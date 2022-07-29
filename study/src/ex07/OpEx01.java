@@ -13,11 +13,27 @@ class People {
 public class OpEx01 {
 		
 	public static void main(String[] args) {
-
-		People p = new People();
+		People p1 = new People();
 		// new 클래스명 : heap에 static이 안 붙어 있는 애들을 띄움 ( 이미 static에 들어가 있으면 올릴 필요가 없어서 )
 		// 에러가 나는건 p에 타입이 없기 때문에 p 앞에 class명을 적어야함 ( People타입을 개발자가 만들었으니 커스텀 타입이라 함 )
+		// 해당 코드가 실행될때 heap에 올라감. ( ex. 앞에 while(true) 같은거 있으면 while이 안끝나서 실행못함)
+	
+		People p2 = new People();
+		// class는 설계도이다. p2는 결과물 이라고 할 수 있음.
+		
+		System.out.println(p1.name);
+		System.out.println(p1.gender);
+		System.out.println(p1.age);
+		System.out.println(p1.money);
+		System.out.println("=================");
+		System.out.println(p2.name);
+		System.out.println(p2.gender);
+		System.out.println(p2.age);
+		System.out.println(p2.money);
+		
+		
 		
 	}
 
 }
+
