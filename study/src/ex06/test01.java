@@ -21,7 +21,6 @@ public class test01 {
 		System.out.print("일을 입력하세요 : ");
 		day = scan.nextInt();
 		
-		scan.close();
 
 		total_days += (year - 1900) * 365;
 		total_days += (year - 1900) / 4; // 윤년 횟수
@@ -38,11 +37,11 @@ public class test01 {
 		}else if (month % 2 == 0) {
 			a = (month / 2 - 1) * 31 + month / 2 * 30; 
 		}else if (month % 2 == 1) {
-			a = (month / 2-1) * 30 + month / 2  * 31; 
+			a = (month / 2 - 1) * 30 + month / 2  * 31; 
 		}
 		
 		total_days += (a + day);
-		//System.out.println(total_days);
+		System.out.println(total_days);
 		
 		if(total_days % 7 == 0) {
 			b = "일요일";
