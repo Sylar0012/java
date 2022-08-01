@@ -1,0 +1,32 @@
+package ex06;
+
+import java.util.Arrays;
+
+public class bubbleEx05 {
+	public static void main(String[] args) {
+
+		int[] arr = { 1, 2, 3, 4,5,6,7,8,9 };
+		int n = 1;
+		int k = arr.length;
+		for (int j = 0; j < k; j++) {
+			for (int i = 0; i < k - 1; i++) {
+				if (!(arr[i] > arr[i + 1])) {
+					int temp;
+					temp = arr[i];
+					arr[i] = arr[i + 1];
+					arr[i + 1] = temp;
+				}
+			}
+
+			for (int i = 0; i < arr.length; i++) {
+				System.out.println(arr[i]);
+			}
+			System.out.println("=== " + n + "번째 사이클 종료 ===");
+			n++;
+		}
+		System.out.println("== 정렬이 완료 되었습니다 ==");
+		System.out.println(Arrays.toString(arr));
+
+	}
+
+}

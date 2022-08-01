@@ -1,3 +1,5 @@
+//표중 체중과 계산후 저,표,과 체중인지 확인
+
 package test;
 
 import java.util.Scanner;
