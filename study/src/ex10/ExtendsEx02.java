@@ -13,7 +13,7 @@ public class ExtendsEx02 {
 	public static void main(String[] args) {
 		//Dog d1 = new Dog();// ->Dog, Animal
 		Animal d1 = new Dog();// Dog, ->Animal
-		System.out.println(d1.num2);
+		System.out.println(d1.num1);
 	
 	}
 
