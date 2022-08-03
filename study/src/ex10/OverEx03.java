@@ -1,55 +1,43 @@
 package ex10;
 
-abstract class 유닛 {
-	public void hp() {
-		return;
-	}
+class 유닛 {
+	public int hp;
+	public int power;
 
-	public void power() {
-		return;
+	public void attack(int power, int hp) {
+		hp = hp - power;
+		System.out.println("남은 hp : " + hp);
 	}
+}
+
+class Zealot extends 유닛 {
+
+	int hp = 100;
+	int power = 5;
 
 	public void attack() {
 		return;
 	}
 
-	public void elseHp() {
+}
+
+class Dragoon extends 유닛 {
+	int hp = 100;
+	int power = 10;
+
+	public void attack() {
 		return;
 	}
 }
 
-class Zealot extends 유닛 {
-	public void hp() {
-		int hp = 100;
-		System.out.println(hp);
-	}
-
-	public void power() {
-		int power = 5;
-	}
-	
-}
-
-class Dragoon extends 유닛 {
-	public void hp() {
-		int hp = 100;
-	}
-
-	public void power() {
-		int power = 10;
-	}
-}
-
 class River extends 유닛 {
-	public void hp() {
-		int hp = 100;
-	}
+	int hp = 100;
+	int power = 50;
 
-	public void power() {
-		int power = 50;
+	public void attack() {
+		return;
 	}
 }
-	
 
 public class OverEx03 {
 
@@ -58,6 +46,11 @@ public class OverEx03 {
 		Dragoon d1 = new Dragoon();
 		River l1 = new River();
 
-		z1.hp();
+		z1.attack(z1.power, d1.hp);
+		z1.attack(z1.power, l1.hp);
+		d1.attack(d1.power, z1.hp);
+		d1.attack(d1.power, l1.hp);
+		l1.attack(l1.power, z1.hp);
+		l1.attack(l1.power, d1.hp);
 	}
 }
