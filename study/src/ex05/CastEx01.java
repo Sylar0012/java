@@ -15,8 +15,7 @@ public class CastEx01 {
 		int num2 = (int)d2; // 명시적 형 변환 ( 자연스럽지 않음 ) = down casting
 		System.out.println(num2); 
 
-		float a = 10.5f;
-		int b =a;
+
 		
 	}
 
