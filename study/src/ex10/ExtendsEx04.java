@@ -22,7 +22,5 @@ public class ExtendsEx04 {
 		햄버거 s =new 더블치즈햄버거();
 		System.out.println(s.name);
 		System.out.println(s.getName());
-		
 	}
-
 }
