@@ -14,24 +14,11 @@ public class test01 {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
-		int user;
-		int a=0;
-		System.out.print("숫자를 입력 하세요 : ");
-		user = scan.nextInt();
+		sysout
 		
-		for(int i =1; i<=500; i++) {
-			 if (user == 1){
-					break;	
-			 }else if(user%2 == 0) {
-				user = user/2;
-			}else if(user%2 == 1){
-				user = user*3 +1;
-			}else	if(i == 500) {
-				System.out.println("-1");
-			}
-			a=i;
-		}				
-		System.out.println(a+"회 만에 완료");	
+		int [] a = 
+		
 	}
+	
 
 }
