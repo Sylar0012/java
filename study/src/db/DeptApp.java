@@ -13,7 +13,7 @@ public class DeptApp {
 		//int result = deptDao.근무지삭제(50);
 		//System.out.println(result);
 		//System.out.println(depts.get(1).getDeptno());
-		deptDao.근무지수정("yyyyy", "eeeeee",50);
+ = deptDao.근무지수정("aasdasdwasdsa", "eaaasdaseeeee",50);
 		
 		
 	}
