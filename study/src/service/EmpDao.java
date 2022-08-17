@@ -1,13 +1,21 @@
-package db;
+package service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import db.DBConnection;
+
 public class EmpDao {
+
+	private Connection conn;	
 	
-	public int 직원부서수정(int deptno, int empno) {
+	public EmpDao(Connection conn) {
+		this.conn = conn;
+	}
+
+	public int 직원수정( int empno, int deptno) {
 		int result = -1;
 		try {
 
@@ -15,8 +23,7 @@ public class EmpDao {
 			StringBuilder sql = new StringBuilder();
 			sql.append("UPDATE emp SET deptno = ? WHERE empno = ?");
 
-			// 2. DB세션
-			Connection conn = DBConnection.connection();
+
 
 			// 3. 문장완성
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
@@ -34,7 +41,6 @@ public class EmpDao {
 		}
 		return result;
 	}
-
 	
 	public int 직원수정(int sal, int comm, int empno) {
 		int result = -1;
@@ -133,7 +139,7 @@ public class EmpDao {
 		ArrayList<Emp> emps = new ArrayList<>();
 		try {
 
-			Connection conn = DBConnection.connection();
+
 
 			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM emp");
 
