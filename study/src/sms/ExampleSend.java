@@ -1,9 +1,9 @@
 package sms;
 
 import java.util.HashMap;
-import org.json.simple.JSONObject;
-import net.nurigo.java_sdk.api.Message;
-import net.nurigo.java_sdk.exceptions.CoolsmsException;
+//import org.json.simple.JSONObject;
+//import net.nurigo.java_sdk.api.Message;
+//import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 /**
  * @class ExampleSend
@@ -13,7 +13,7 @@ public class ExampleSend {
   public static void main(String[] args) {
     String api_key = "NCSLK9R1LG2QVXI7";
     String api_secret = "9Q7HOQW8BHD5WBQ4JJ3OZRY6ETT7SZPY";
-    Message coolsms = new Message(api_key, api_secret);
+    //Message coolsms = new Message(api_key, api_secret);
 
     // 4 params(to, from, type, text) are mandatory. must be filled
     HashMap<String, String> params = new HashMap<String, String>();
@@ -23,12 +23,12 @@ public class ExampleSend {
     params.put("text", "안녕 민철아");
     params.put("app_version", "test app 1.2"); // application name and version
 
-    try {
-      JSONObject obj = (JSONObject) coolsms.send(params);
-      System.out.println(obj.toString());
-    } catch (CoolsmsException e) {
-      System.out.println(e.getMessage());
-      System.out.println(e.getCode());
-    }
+    //try {
+      //JSONObject obj = (JSONObject) coolsms.send(params);
+      //System.out.println(obj.toString());
+    //} catch (CoolsmsException e) {
+      //System.out.println(e.getMessage());
+      //System.out.println(e.getCode());
+    //}
   }
 }

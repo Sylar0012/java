@@ -22,6 +22,7 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public void 주문하기(int customerid, int productid) {
 		// 1. 재고확인 ( 재고가 0보다 큰가? product findbyid 의 qty확인)
+		
 		// 2. 주문하기 ( order insert )
 		// 3. 재고 -1 하기 ( product updateByToQty )
 		
