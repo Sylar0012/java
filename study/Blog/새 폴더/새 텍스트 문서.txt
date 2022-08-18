@@ -1,0 +1,106 @@
+자바로 db에 접근할수 있는 시스템을 서버라 함
+
+자바가 데이터를 들고 있으니까
+
+1. DBConnection 제작
+
+2. table마다 Entity제작 ( 상태변수 달고 getter만듬 -> setter는 생성자로 값을초기화 할 수 있어서 안만들어도 됨 )
+ -> job을 변경할때는 job을변경하는 메서드를 사용해서 바꾸기 때문에 setter는 필요가 없음 
+     ( 값을 변경하는것은 조심해서 만들어야 함 )
+
+3. Dao제작 ( 5가지는 디폴트로 만들어놓고 추가로 필요한거 더 작성 )
+
+4. Service 제작
+ commit과 rollback을 하는 공간임
+ -> 다른 컴퓨터에서 Service메서드 호출 가능 
+
+-------------------------
+- 상품, 고객이 있음 
+ -> 고객은 상품을 구매 가능 ( 고객이 상품을 보는 관점 )
+ -> 고객은 상품을 주문함
+
+상품 주문 고객 3개 테이블을 만들어내야함
+
+table제작 
+
+이렇게 제작할 수 있음.
+
+
+
+Auto_increment : 자동으로 번호를 주겠다는 소리.
+
+오라클은 시퀀스다
+
+외부에 객체(변수)하나 만들어서 insert를 하기전에 객체에 참조 ( 번호를 부여받음 ) 한 후에 저장됨
+하나씩 저장될때마다 값이 1씩 증가됨 
+
+만약 1 2 3 4 5 가 있는데  4 5를 삭제한 후에 다른 데이터를 insert시키면 4로 들어감
+
+시퀀스 만드는 법
+
+코드로도 만들 수 있다. 
+값 안적으면 디폴트 값으로 들어감.
+
+
+시퀀스 : 만약 1 2 3 4 5 가 있는데  4 5를 삭제한 후에 다른 데이터를 insert시키면 4로 들어가는게 아니라 6으로 들어감.
+
+INSERT INTO customer(id, username, password) VALUES(customer_seq.nextval, 'ssar', '1234');
+customer_seq.nextval < customer_seq의 값을 참조해서 번호를 매겨라
+
+아까말한 특징.
+
+이걸 없에려면 초기화 해야한다 .
+
+DROP table customer;< 테이블 지움
+
+테이블을 초기화 해도 seq에는 값이 이미 증가된 상태기 때문에 seq를 초기화 해야한다.
+
+DROP SEQUENCE customer_seq; < 으로 지우고 다시 만들어야 한다.
+
+product만들고 order만들거
+
+order는 누가 어떠한 상품을 주문했는지 파악하는 테이블
+
+즉 pk를 받아내서 만들어야함.
+
+Foreign Key를 통해서 테이블 생성 함.
+
+무조건 걸필요가 없다 ( null값을 받을 수도 있어서 )
+
+product를 삭제할 수는 없다 ( orders가 참조하고 있어서 )
+
+삭제할 경우 자식을 먼저 지운후에 해야함.
+
+INSERT INTO product(id, name, price, qty) VALUES(product_seq.nextval,'샴푸',3000,100);
+
+INSERT INTO customer(id, username, password) VALUES(customer_seq.nextval, 'cos', '1234');
+
+샴푸 100개를 추가하고 cos라는 고객을 등록했다.
+
+INSERT INTO orders(id, customerId, productId) VALUES(orders_seq.nextval,1,1);
+으로 주문을 넣었다.
+
+1번 id를 가진 고객이 1번 id를가진 상품을 주문했다 라는 소리
+
+이렇게 주문을 한 후에 product를 업데이트 해야한다.
+수량을 줄여야 하니까.
+
+UPDATE product set qty = qty-1 where id =1; 
+으로 수량을 줄여줘야 한다.
+
+유령데이터에 대한 문제는 항상 조심해야한다.
+예를들어 상품이 1개 남았는데 두명이 구매에 성공했다. -> 하나는 유령데이터가 됨( 없는걸 산거 )
+그냥 환불해주면 된다 -> 아이솔레이션을 무시한다고 볼 수 있다.
+
+
+트랜잭션 -
+
+원자성 (Atomicity) : 트랜잭션이 데이터베이스에 모두 반영되던가 아니면 전혀 반영되지 않아야함.
+
+일관성 (Consistency) :  트랜잭션의 작업 처리 결과가 항상 일관성이 있어야 한다는 것
+ 예를들어 상품이 1개 남았는데 두명이 구매에 성공했다. 
+ => 두명의 유저가 상품이 한개 남은걸 보고 그중 누군가는 이미 샀지만 다른 유저는 상품이 남은 갯수가 1로 보임 그래서 유령데이터가 생김
+
+독립성 (Isolation) : 두가지 트랜잭션이 동시에 실행될 경우 하나의 트랜잭션이라도 다른 트랜잭션의 연산에 끼어들수 없음
+
+지속성 (Durability) : 트랜잭션이 성공적으로 완료했을 경우 영구적으로 반영해야함 (commit)

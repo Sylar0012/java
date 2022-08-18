@@ -1,0 +1,34 @@
+SELECT job, sal, ename, hiredate, mgr, comm, deptno, empno
+FROM emp
+WHERE job = 'ANALYST'
+UNION ALL
+SELECT '소계', round(avg(sal), 2), null, null, null, null, null, null 
+FROM emp
+WHERE job = 'ANALYST'
+UNION ALL
+SELECT job, sal, ename, hiredate, mgr, comm, deptno, empno
+FROM emp
+WHERE job = 'CLERK'
+UNION ALL
+SELECT '소계', round(avg(sal), 2), null, null, null, null, null, null 
+FROM emp
+WHERE job = 'CLERK'
+UNION ALL
+SELECT job, sal, ename, hiredate, mgr, comm, deptno, empno
+FROM emp
+WHERE job = 'MANAGER'
+UNION ALL
+SELECT '소계', round(avg(sal), 2), null, null, null, null, null, null 
+FROM emp
+WHERE job = 'MANAGER'
+UNION ALL
+SELECT job, sal, ename, hiredate, mgr, comm, deptno, empno
+FROM emp
+WHERE job = 'SALESMAN'
+UNION ALL
+SELECT '소계', round(avg(sal), 2), null, null, null, null, null, null 
+FROM emp
+WHERE job = 'SALESMAN'
+UNION ALL
+SELECT '총계', round(avg(sal), 2), null, null, null, null, null, null 
+FROM emp;

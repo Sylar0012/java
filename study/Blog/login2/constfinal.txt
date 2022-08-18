@@ -1,0 +1,62 @@
+ListView 위젯으로 전체 구성
+
+inset영역 : 키보드가 올라오는 영역처럼 관여할수 없는 곳을 의미
+
+flutter_svg : 백터된 이미지. 화면의 크기가 변해도 사진이 깨지지 않게 해줌.
+
+왜 const로 잡았나? 
+ new해서 사용 하려고 함 -> heap이 하나 뜸 -> 한번더 사용하려고 함 -> heap에 뜬거 긁어옴
+
+final은 왜 했냐 -> 왼쪽은 로그인창 오른쪽도 로그인창이면 둘다 로그인으로 나오지만
+둘중 하나가 바뀌면 둘다 바뀌니까
+
+두개를 써서 heap에 하나를 띄우고 두개가 공유해서 쓴다.
+
+같은디자인이다 ( 로고가 같다던지 ) 그럼 const로 재사용해서 쓸 수 있다는 소리
+
+만약 둘다 final과 const가 없으면 계속 heap에 뜸
+
+TextFormField 는 사용자 입력을 받을 수 있는 입력양식.
+
+TextFormField Input으로 디자인
+
+인풋보더는 추상화라 구현체를 보고 적으면 됨.
+
+표현식 : 실행되는 내부가 리턴이 됨
+validator : 아무값이나 리턴받을 메서드 필요. null을 받으면 정상으로 판단, null제외 다른값은 오류났다고 판단.
+
+isEmpty가 공백을 의미? null을 의미? 
+
+공백을 의미
+
+value!.isEmpty -> value는 절때 null이 아니다 라는 소리
+
+인풋테그 : 하나씩 잡아서 전송함
+
+폼테그 : 인풋 태그를 모아서 한번에 전송함
+
+flutter도 똑같다. 
+
+기본양식
+
+안에 input들이 들어갈 예정
+
+
+const빼야함 .디자인이 바뀌기 때문
+
+null을 _formKey로 변경
+
+_formKey 역할 : CustomTextFormField 안에 validator 컨트롤함
+
+_formKey.currentState!.validate() = validator 값이 모두다 null이냐?
+
+다적으면 넘어가고 안적으면 에러문 출력해줌.
+
+디폴트값이라 생각해라 . 에러가 나든 안나든 디자인을 똑같이 해줌.
+
+validator 유효성 검사 할때 라이브러리 써라 
+
+
+
+
+
