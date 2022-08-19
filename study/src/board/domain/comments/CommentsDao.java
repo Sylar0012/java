@@ -5,10 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-
-
 public class CommentsDao {
-	private Connection conn;	
+private Connection conn;	
 	
 	public CommentsDao(Connection conn) {
 		this.conn = conn;
@@ -80,24 +78,25 @@ public class CommentsDao {
 	}
 	
 	public Comments findById(int id) {
-		Comments comments = new Comments();
+		Comments comment = new Comments();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM comments WHERE id = ?" );
 			pstmt.setInt(1, id);
 
 			ResultSet rs = pstmt.executeQuery();
-
+			System.out.println('1');
 			if (rs.next()) {
-				comments.setId(rs.getInt("id"));
-				comments.setContent(rs.getString("content"));
-				comments.setMemberId(rs.getInt("memberId"));
-				comments.setBoardId(rs.getInt("boardId"));
+				System.out.println('2');
+				comment.setId(rs.getInt("id"));
+				comment.setContent(rs.getString("content"));
+				comment.setMemberId(rs.getInt("memberId"));
+				comment.setBoardId(rs.getInt("boardId"));
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return comments;
+		return comment;
 
 
 	}
@@ -110,7 +109,6 @@ public class CommentsDao {
 
 			while (rs.next()) {
 				Comments comment = new Comments();
-				System.out.println("1");
 				comment.setId(rs.getInt("id"));
 				comment.setContent(rs.getString("content"));
 				comment.setMemberId(rs.getInt("memberId"));
@@ -124,4 +122,3 @@ public class CommentsDao {
 		return comments;
 	}
 }
-
