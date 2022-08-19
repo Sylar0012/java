@@ -38,6 +38,28 @@ public class OrdersDao {
 		return result;
 	}
 	
+	public int insert(int customerid, int productid) {
+		int result = -1;
+
+		try {
+			StringBuilder sql = new StringBuilder();
+			sql.append("INSERT INTO orders ");
+			sql.append("VALUES(product_seq.nextval,?,?)");
+
+			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+
+			pstmt.setInt(1, customerid);
+			pstmt.setInt(2, productid);
+
+
+			result = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	public Orders findById(int id) {
 		Orders orders = new Orders();
 		try {
@@ -79,6 +101,8 @@ public class OrdersDao {
 		}
 		return ordersList;
 	}
+	
+
 	
 	public int updateById(int id, Orders orders) {
 		int result = -1;
@@ -156,4 +180,6 @@ public class OrdersDao {
 		return dtoList;
 		
 	}
+
+
 }

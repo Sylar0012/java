@@ -8,47 +8,48 @@ import java.util.ArrayList;
 
 
 public class CommentsDao {
-	private Connection conn;
-
+	private Connection conn;	
+	
 	public CommentsDao(Connection conn) {
 		this.conn = conn;
 	}
 
-	// 1. 댓글 작성
 	public int insert(Comments comments) {
 		int result = -1;
-
+		
 		try {
+			
 			StringBuilder sql = new StringBuilder();
 			sql.append("INSERT INTO comments ");
-			sql.append("VALUES(comments_seq.nextval,?,?,?)");
-
+			sql.append("VALUES(COMMENTS_SEQ.NEXTVAL, ? , ?, ?");
+			
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
-
-			pstmt.setString(1, comments.getContent());
-			pstmt.setString(2, comments.getContent());
-			pstmt.setInt(3, comments.getMembersId());
+			
+			pstmt.setString(1,comments.getContent());
+			pstmt.setInt(2,comments.getMemberId());
+			pstmt.setInt(3,comments.getBoardId());
 
 			result = pstmt.executeUpdate();
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return result;
+		return result;		
 	}
-
-	// 2. 댓글 수정
-	public int updateById(int id, Comments comments) {
+	
+	public int updateByid(int id, Comments comments) {
 		int result = -1;
 		try {
 			StringBuilder sql = new StringBuilder();
-			sql.append("UPDATE comments SET content = ? ");
+			sql.append("UPDATE comments SET content = ?, memberId = ?, boardId = ? ");
 			sql.append("WHERE id = ?");	
 	
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 		
-			pstmt.setString(1, comments.getContent());
-			pstmt.setInt(2, id);
+			pstmt.setString(1,comments.getContent());
+			pstmt.setInt(2,comments.getMemberId());
+			pstmt.setInt(3,comments.getBoardId());
+			pstmt.setInt(4,comments.getId());
 			
 			result = pstmt.executeUpdate(); 
 
@@ -57,9 +58,8 @@ public class CommentsDao {
 			e.printStackTrace();
 		}
 		return result;
-
 	}
-	// 3. 댓글 삭제
+	
 	public int deleteById(int id) {
 		int result = -1;
 		try {
@@ -77,13 +77,12 @@ public class CommentsDao {
 			e.printStackTrace();
 		}
 		return result;
-		
 	}
-	// 4. 댓글 한개 보기
+	
 	public Comments findById(int id) {
 		Comments comments = new Comments();
 		try {
-			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM comments WHERE id = ?");
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM comments WHERE id = ?" );
 			pstmt.setInt(1, id);
 
 			ResultSet rs = pstmt.executeQuery();
@@ -91,38 +90,38 @@ public class CommentsDao {
 			if (rs.next()) {
 				comments.setId(rs.getInt("id"));
 				comments.setContent(rs.getString("content"));
-				comments.setBoardsId(rs.getInt("boardsId"));
-				comments.setMembersId(rs.getInt("memberId"));
+				comments.setMemberId(rs.getInt("memberId"));
+				comments.setBoardId(rs.getInt("boardId"));
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return comments;
-		
+
 
 	}
-	// 5. 댓글 모두 보기
-	public ArrayList<Comments> findAll() {
-		ArrayList<Comments> commentes = new ArrayList<>();
+	
+	public ArrayList<Comments> findAll(){
+		ArrayList<Comments> comments = new ArrayList<>();
 		try {
-			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM comments ORDER BY id DESC ");
+			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM comments ORDER BY id DESC " );
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				Comments comments = new Comments();
-				comments.setId(rs.getInt("id"));
-				comments.setContent(rs.getString("content"));
-				comments.setBoardsId(rs.getInt("boardsId"));
-				comments.setMembersId(rs.getInt("memberId"));
-				commentes.add(comments);
+				Comments comment = new Comments();
+				System.out.println("1");
+				comment.setId(rs.getInt("id"));
+				comment.setContent(rs.getString("content"));
+				comment.setMemberId(rs.getInt("memberId"));
+				comment.setBoardId(rs.getInt("boardId"));
+				comments.add(comment);
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return commentes;
+		return comments;
 	}
 }
-
 

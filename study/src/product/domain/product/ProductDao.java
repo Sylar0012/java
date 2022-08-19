@@ -126,7 +126,7 @@ public class ProductDao {
 		
 	}
 	
-	public int updateByIdToQty(int id) {
+	public int updateByIdToQtyMinus(int id) {
 		int result = -1;
 		try {
 			StringBuilder sql = new StringBuilder();
@@ -144,6 +144,26 @@ public class ProductDao {
 		return result;
 
 	}
+	
+	public int updateByIdToQtyPuls(int id) {
+		int result = -1;
+		try {
+			StringBuilder sql = new StringBuilder();
+			sql.append("UPDATE product SET qty = qty +1");
+			sql.append("WHERE id = ?");	
+	
+			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, id);
+			result = pstmt.executeUpdate(); 
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+
+	}
+
 
 
 }

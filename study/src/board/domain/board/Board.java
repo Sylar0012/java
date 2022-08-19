@@ -1,21 +1,21 @@
-package board.domain.comments;
+package board.domain.board;
 
-public class Comments {
+public class Board {
 	private int id;
+	private String title;
 	private String content;
 	private int memberId;
-	private int boardId;
 	
-	public  Comments() {
+	public  Board() {
 		
 	}
 	
-	public Comments(int id, String content, int memberId, int boardId) {
-		super();
+	public Board(int id, String title, String content, int memberId) {
+	
 		this.id = id;
+		this.title = title;
 		this.content = content;
 		this.memberId = memberId;
-		this.boardId = boardId;
 	}
 
 	public int getId() {
@@ -24,6 +24,14 @@ public class Comments {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getContent() {
@@ -40,14 +48,6 @@ public class Comments {
 
 	public void setMemberId(int memberId) {
 		this.memberId = memberId;
-	}
-
-	public int getBoardId() {
-		return boardId;
-	}
-
-	public void setBoardId(int boardId) {
-		this.boardId = boardId;
 	}
 	
 	
