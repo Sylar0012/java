@@ -18,16 +18,16 @@ public class MyApp {
 		CommentsDao commentsDao = new CommentsDao(conn);
 		MembersDao membersDao = new MembersDao(conn);
 		
-		int BoardTitleDto = 2;
-			ArrayList<BoardTitleDto> boardTitleDto = boardsDao.BoardsList(2);
+		for(int j= 1; j<4; j++) {
+			ArrayList<BoardTitleDto> boardTitleDto = boardsDao.BoardsList(j);
 		
 		for(int i =2;i <boardTitleDto.size(); i++) {
-			System.out.print(boardTitleDto.get(0).getId()+"\t");
-			System.out.print(boardTitleDto.get(0).getTitle()+"\t");
-			System.out.print(boardTitleDto.get(0).getUsername()+"\t");
-			System.out.println(boardTitleDto.get(0).getCount());
+			System.out.print(boardTitleDto.get(i).getId()+"\t");
+			System.out.print(boardTitleDto.get(i).getTitle()+"\t");
+			System.out.print(boardTitleDto.get(i).getUsername()+"\t");
+			System.out.println(boardTitleDto.get(i).getCount());
 		}
-		
+		}
 		
 		
 		

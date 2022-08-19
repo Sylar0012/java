@@ -128,21 +128,20 @@ public class BoardsDao {
 	}
 
 	// 6. 게시글 목록보기
-	public ArrayList<BoardTitleDto> BoardsList(BoardTitleDto a ){
+	public ArrayList<BoardTitleDto> BoardsList(int id ){
 		ArrayList<BoardTitleDto> boardsList = new ArrayList<>();
 
 		try {
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT b1.id id, b1.title title, m1.username username,  ");
-			sql.append("(SELECT count(*)FROM comments WHERE boardsId = ? ");
+			sql.append("(SELECT count(*) FROM comments WHERE boardsId = b1.id) count ");
 			sql.append("FROM boards b1 INNER JOIN members m1 ");
 			sql.append("ON b1.memberId = ?");
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setInt(1, a.getId());
-			pstmt.setInt(2, a.getUsername());
-			
-			
+		
+			pstmt.setInt(1, id);
+					
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -152,7 +151,6 @@ public class BoardsDao {
 				boardTitleDto.setUsername(rs.getString("username"));
 				boardTitleDto.setCount(rs.getInt("count"));
 				boardsList.add(boardTitleDto);
-				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
