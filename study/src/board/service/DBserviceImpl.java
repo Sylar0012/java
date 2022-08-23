@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import board.domain.board.BoardDao;
 import board.dto.BoardListDto;
 
-public class BDserviceImpl implements BDservice{
+public class DBserviceImpl implements DBservice{
 	private BoardDao boardDao;
 	private Connection connection;
 	
-	public BDserviceImpl(BoardDao boardDao, Connection connection) {
+	public DBserviceImpl(BoardDao boardDao, Connection connection) {
 		super();
 		this.boardDao = boardDao;
 		this.connection =  connection;

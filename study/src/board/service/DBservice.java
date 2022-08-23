@@ -6,6 +6,6 @@ import board.dto.BoardListDto;
 
 
 
-public interface BDservice {
+public interface DBservice {
 	public ArrayList<BoardListDto> 게시글목록보기();
 }
