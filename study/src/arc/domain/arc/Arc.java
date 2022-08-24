@@ -3,7 +3,7 @@ package arc.domain.arc;
 public class Arc {
 	private int id;
 	private String itemname;
-	private String itemqty;
+	private int itemqty;
 	private String itemfrom;
 	
 
@@ -11,13 +11,13 @@ public class Arc {
 
 	}
 
-	public Arc(String itemname, String itemqty, String itemfrom) {
+	public Arc(String itemname, int itemqty, String itemfrom) {
 		this.itemname = itemname;
 		this.itemqty = itemqty;
 		this.itemfrom = itemfrom;
 	}
 
-	public Arc(int id, String itemname, String itemqty, String itemfrom) {
+	public Arc(int id, String itemname, int itemqty, String itemfrom) {
 		this.id = id;
 		this.itemname = itemname;
 		this.itemqty = itemqty;
@@ -40,11 +40,11 @@ public class Arc {
 		this.itemname = itemname;
 	}
 
-	public String getItemqty() {
+	public int getItemqty() {
 		return itemqty;
 	}
 
-	public void setItemqty(String itemqty) {
+	public void setItemqty(int itemqty) {
 		this.itemqty = itemqty;
 	}
 

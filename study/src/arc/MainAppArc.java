@@ -14,7 +14,7 @@ public class MainAppArc {
 		int userInsert;
 		int id;
 		String Itemname;
-		String itemqty;
+		int itemqty;
 		String itemfrom;
 		String space;
 
@@ -42,7 +42,7 @@ public class MainAppArc {
 				System.out.print("아이템 이름 : ");
 				Itemname = scan.nextLine();
 				System.out.print("갯수 : ");
-				itemqty = scan.next();
+				itemqty = scan.nextInt();
 				space = scan.nextLine();
 				System.out.print("아이템 위치 : ");
 				itemfrom = scan.nextLine();
@@ -61,7 +61,7 @@ public class MainAppArc {
 				System.out.print("아이템 이름 : ");
 				Itemname = scan.nextLine();
 				System.out.print("갯수 : ");
-				itemqty = scan.next();
+				itemqty = scan.nextInt();
 				space = scan.nextLine();
 				System.out.print("아이템 위치 : ");
 				itemfrom = scan.next();

@@ -26,7 +26,7 @@ public class ArcDao {
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 
 			pstmt.setString(1, arc.getItemname());
-			pstmt.setString(2, arc.getItemqty());
+			pstmt.setInt(2, arc.getItemqty());
 			pstmt.setString(3, arc.getItemfrom());
 
 			result = pstmt.executeUpdate();
@@ -46,7 +46,7 @@ public class ArcDao {
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 		
 			pstmt.setString(1, arc.getItemname());
-			pstmt.setString(2, arc.getItemqty());
+			pstmt.setInt(2, arc.getItemqty());
 			pstmt.setString(3, arc.getItemfrom());
 			pstmt.setInt(4,arc.getId());
 			
@@ -87,7 +87,7 @@ public class ArcDao {
 			if (rs.next()) {
 				arc.setId(rs.getInt("id"));
 				arc.setItemname(rs.getString("itemname"));
-				arc.setItemqty(rs.getString("itemqty"));
+				arc.setItemqty(rs.getInt("itemqty"));
 				arc.setItemfrom(rs.getString("itemfrom"));
 			}
 		} catch (Exception e) {
@@ -108,7 +108,7 @@ public class ArcDao {
 				Arc arc = new Arc();
 				arc.setId(rs.getInt("id"));
 				arc.setItemname(rs.getString("itemname"));
-				arc.setItemqty(rs.getString("itemqty"));
+				arc.setItemqty(rs.getInt("itemqty"));
 				arc.setItemfrom(rs.getString("itemfrom"));
 				arcs.add(arc);
 			}
