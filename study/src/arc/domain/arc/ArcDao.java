@@ -48,7 +48,7 @@ public class ArcDao {
 			pstmt.setString(1, arc.getItemname());
 			pstmt.setInt(2, arc.getItemqty());
 			pstmt.setString(3, arc.getItemfrom());
-			pstmt.setInt(4,arc.getId());
+			pstmt.setInt(4,id);
 			
 			result = pstmt.executeUpdate(); 
 
