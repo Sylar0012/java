@@ -2,7 +2,6 @@ package arc;
 
 import java.sql.Connection;
 import java.util.Scanner;
-
 import arc.domain.arc.Arc;
 import arc.domain.arc.ArcDao;
 import arc.service.DBserviceImpl;
@@ -11,20 +10,17 @@ import product.db.DBconnection;
 public class MainAppArc {
 
 	public static void main(String[] args) {
-		int userInsert;
-		int id;
-		String Itemname;
-		int itemqty;
-		String itemfrom;
-		String space;
+		int userInsert, id, itemqty;
+		String Itemname, itemfrom, space;
 
 		Connection conn = DBconnection.connection();
 
 		ArcDao arcDao = new ArcDao(conn);
 		DBserviceImpl s = new DBserviceImpl(conn, arcDao);
 		Scanner scan = new Scanner(System.in);
-		종료: while (true) {
-			System.out.println();
+
+		종료: 
+		while (true) {
 			System.out.println(" 1. 아이템 사용 데이터 추가 ");
 			System.out.println(" 2. 아이템 사용 데이터 수정 ");
 			System.out.println(" 3. 아이템 사용 데이터 삭제 ");
@@ -54,7 +50,7 @@ public class MainAppArc {
 				break;
 
 			case 2:
-
+				
 				System.out.print("뭐 수정할까 : ");
 				id = scan.nextInt();
 				space = scan.nextLine();
@@ -73,7 +69,7 @@ public class MainAppArc {
 
 			case 3:
 
-				System.out.print("뭐 지워줄까 : ");
+				System.out.print(" 뭐 지워줄까 : ");
 				id = scan.nextInt();
 
 				s.삭제(id);
@@ -98,7 +94,7 @@ public class MainAppArc {
 				break 종료;
 
 			default:
-				System.out.println("있는거만 시켜라 ");
+				System.out.println(" 있는거만 시켜라 ");
 			}
 		}
 		System.out.println("ㅅㄱ");
